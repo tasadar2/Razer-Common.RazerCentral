@@ -1355,6 +1355,8 @@ namespace Common.RazerCentral.Accounts
             return null;
         }
 
+        private static NetworkMonitor _networkMonitor;
+
         public RazerUserInfo GetRazerUser()
         {
             if (IsLoggedInUser(bRazerCentralOnly: true))
@@ -1367,8 +1369,8 @@ namespace Common.RazerCentral.Accounts
                     }
 
                     RazerUserInfo razerUserInfo = new RazerUserInfo(_RzUser.Id, (!string.IsNullOrEmpty(_RzUser.Token)) ? _RzUser.Token : _RzUser.Id, _RzUser.LoginId, string.Empty, (!string.IsNullOrEmpty(_RzUser.Token)) ? _RzUser.Token : _RzUser.Id);
-                    NetworkMonitor networkMonitor = new NetworkMonitor();
-                    razerUserInfo.Online = networkMonitor.NetworkIsUp;
+                    _networkMonitor ??= new NetworkMonitor();
+                    razerUserInfo.Online = _networkMonitor.NetworkIsUp;
                     return razerUserInfo;
                 }
                 catch (Exception arg)
