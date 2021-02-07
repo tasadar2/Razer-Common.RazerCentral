@@ -3,6 +3,7 @@
 ## Installation
 
 > Note: It is a good idea to make a backup of any directory or files before overwriting
+
 > Note: It seems that all the assemblies in the `C:\ProgramData\Razer\Synapse3\Service\Bin` directory are loaded, so do not store the backups in this directory
 
 1. Download the archive from the appropriate [release](https://github.com/tasadar2/Razer-Common.RazerCentral/releases)
@@ -38,6 +39,6 @@
       }
       ```
 
-      The disturbing part is that the purpose of this long running service is to update the `NetworkIsUp` member, but this member, just manually executes, what is already cached in `m_lastNetworkState`...
+      The disturbing part is that the purpose of this long running service is to update the `NetworkIsUp` member, but this member, just manually executes what is already cached in `m_lastNetworkState`...
 
       To avoid any mis-assumptions, I ended up caching the long running service, instead of altering the behavior of the `NetworkMonitor`, which seems to have solved the occasional CPU usage as well as one of the memory leaks.
